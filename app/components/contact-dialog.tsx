@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
+import { Loader2 } from "lucide-react"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -39,6 +40,7 @@ const formSchema = z.object({
 
 export function ContactDialog() {
   const [open, setOpen] = React.useState(false)
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
   const { toast } = useToast()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,6 +52,7 @@ export function ContactDialog() {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true)
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -60,7 +63,8 @@ export function ContactDialog() {
       })
 
       if (!response.ok) {
-        throw new Error("Failed to send message")
+        const error = await response.text()
+        throw new Error(error || "Failed to send message")
       }
 
       toast({
@@ -72,9 +76,11 @@ export function ContactDialog() {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
         variant: "destructive",
       })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -85,7 +91,7 @@ export function ContactDialog() {
           Contact Us
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] border-none">
         <DialogHeader>
           <DialogTitle>Contact Us</DialogTitle>
           <DialogDescription>
@@ -101,7 +107,13 @@ export function ContactDialog() {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your name" {...field} />
+                    <Input 
+                      placeholder="Your name" 
+                      {...field} 
+                      className={`bg-white text-black border-0 ring-0 focus-visible:ring-0 ${
+                        form.formState.dirtyFields.name && !form.formState.errors.name ? "bg-[#F9F6F0]" : ""
+                      }`}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -114,7 +126,14 @@ export function ContactDialog() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="your.email@example.com" type="email" {...field} />
+                    <Input 
+                      placeholder="your.email@example.com" 
+                      type="email" 
+                      {...field} 
+                      className={`bg-white text-black border-0 ring-0 focus-visible:ring-0 ${
+                        form.formState.dirtyFields.email && !form.formState.errors.email ? "bg-[#F9F6F0]" : ""
+                      }`}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,7 +148,9 @@ export function ContactDialog() {
                   <FormControl>
                     <Textarea
                       placeholder="Tell us how we can help..."
-                      className="resize-none"
+                      className={`resize-none bg-white text-black border-0 ring-0 focus-visible:ring-0 ${
+                        form.formState.dirtyFields.message && !form.formState.errors.message ? "bg-[#F9F6F0]" : ""
+                      }`}
                       {...field}
                     />
                   </FormControl>
@@ -137,7 +158,20 @@ export function ContactDialog() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">Send Message</Button>
+            <Button 
+              type="submit" 
+              className="w-full bg-[#B4975A] hover:bg-[#8B7443]" 
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
+            </Button>
           </form>
         </Form>
       </DialogContent>

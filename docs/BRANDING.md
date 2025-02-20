@@ -51,6 +51,53 @@ module.exports = {
 }
 ```
 
+### Light Mode Color Palette
+
+| Color Type | Preview | Hex Code | Weight | Color Name |
+|------------|---------|----------|---------|------------|
+| Primary | <div style="width: 20px; height: 20px; background-color: #F0F9FF"></div> | #F0F9FF | 50 | Sky Blue |
+| Primary | <div style="width: 20px; height: 20px; background-color: #E0F2FE"></div> | #E0F2FE | 100 | Light Sky Blue |
+| Primary | <div style="width: 20px; height: 20px; background-color: #BAE6FD"></div> | #BAE6FD | 200 | Pale Sky Blue |
+| Primary | <div style="width: 20px; height: 20px; background-color: #7DD3FC"></div> | #7DD3FC | 300 | Bright Sky Blue |
+| Primary | <div style="width: 20px; height: 20px; background-color: #38BDF8"></div> | #38BDF8 | 400 | Vivid Sky Blue |
+| Primary | <div style="width: 20px; height: 20px; background-color: #0EA5E9"></div> | #0EA5E9 | 500 | Base Teal |
+| Primary | <div style="width: 20px; height: 20px; background-color: #0284C7"></div> | #0284C7 | 600 | Deep Teal |
+| Primary | <div style="width: 20px; height: 20px; background-color: #0369A1"></div> | #0369A1 | 700 | Ocean Teal |
+| Primary | <div style="width: 20px; height: 20px; background-color: #075985"></div> | #075985 | 800 | Dark Teal |
+| Primary | <div style="width: 20px; height: 20px; background-color: #0C4A6E"></div> | #0C4A6E | 900 | Navy Teal |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #F8FAFC"></div> | #F8FAFC | 50 | Off White |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #F1F5F9"></div> | #F1F5F9 | 100 | Slate Gray 100 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #E2E8F0"></div> | #E2E8F0 | 200 | Slate Gray 200 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #CBD5E1"></div> | #CBD5E1 | 300 | Slate Gray 300 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #94A3B8"></div> | #94A3B8 | 400 | Slate Gray 400 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #64748B"></div> | #64748B | 500 | Slate Gray 500 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #475569"></div> | #475569 | 600 | Slate Gray 600 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #334155"></div> | #334155 | 700 | Slate Gray 700 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #1E293B"></div> | #1E293B | 800 | Slate Gray 800 |
+| Secondary | <div style="width: 20px; height: 20px; background-color: #0F172A"></div> | #0F172A | 900 | Slate Gray 900 |
+| Accent | <div style="width: 20px; height: 20px; background-color: #F0FDF4"></div> | #F0FDF4 | 50 | Mint Green |
+| Accent | <div style="width: 20px; height: 20px; background-color: #DCFCE7"></div> | #DCFCE7 | 100 | Light Mint |
+| Accent | <div style="width: 20px; height: 20px; background-color: #BBF7D0"></div> | #BBF7D0 | 200 | Pale Mint |
+| Accent | <div style="width: 20px; height: 20px; background-color: #86EFAC"></div> | #86EFAC | 300 | Spring Green |
+| Accent | <div style="width: 20px; height: 20px; background-color: #4ADE80"></div> | #4ADE80 | 400 | Bright Green |
+| Accent | <div style="width: 20px; height: 20px; background-color: #22C55E"></div> | #22C55E | 500 | Vitality Green |
+| Accent | <div style="width: 20px; height: 20px; background-color: #16A34A"></div> | #16A34A | 600 | Forest Green |
+| Accent | <div style="width: 20px; height: 20px; background-color: #15803D"></div> | #15803D | 700 | Deep Forest |
+| Accent | <div style="width: 20px; height: 20px; background-color: #166534"></div> | #166534 | 800 | Dark Forest |
+| Accent | <div style="width: 20px; height: 20px; background-color: #14532D"></div> | #14532D | 900 | Pine Green |
+
+### Dark Mode Color Palette
+(Using recommended dark mode color combinations)
+
+| Color Type | Preview | Hex Code | Weight | Color Name |
+|------------|---------|----------|---------|------------|
+| Primary (Background) | <div style="width: 20px; height: 20px; background-color: #0C4A6E"></div> | #0C4A6E | 900 | Navy Teal |
+| Primary (Text) | <div style="width: 20px; height: 20px; background-color: #F0F9FF"></div> | #F0F9FF | 50 | Sky Blue |
+| Secondary (Background) | <div style="width: 20px; height: 20px; background-color: #0F172A"></div> | #0F172A | 900 | Slate Gray 900 |
+| Secondary (Text) | <div style="width: 20px; height: 20px; background-color: #F8FAFC"></div> | #F8FAFC | 50 | Off White |
+| Accent (Interactive) | <div style="width: 20px; height: 20px; background-color: #22C55E"></div> | #22C55E | 500 | Vitality Green |
+| Accent (Hover) | <div style="width: 20px; height: 20px; background-color: #16A34A"></div> | #16A34A | 600 | Forest Green |
+
 **Light/Dark Mode Implementation:**
 ```html
 <div class="bg-primary-50 dark:bg-primary-900 text-primary-900 dark:text-primary-50">
