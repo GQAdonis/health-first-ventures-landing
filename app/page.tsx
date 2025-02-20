@@ -1,14 +1,11 @@
-import { Metadata } from "next";
-import Header from "./components/header";
-import Hero from "./components/hero";
-import Mission from "./components/mission";
-import Portfolio from "./components/portfolio";
-import Footer from "./components/footer";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Health First Ventures - Healthcare Innovation Investment",
-  description: "Health First Ventures is a venture capital firm focused on transforming healthcare through strategic investments in innovative companies.",
-};
+import Header from "@/components/header";
+import Hero from "@/components/hero";
+import Mission from "@/components/mission";
+import Portfolio from "@/components/portfolio";
+import Team from "@/components/team";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -17,6 +14,7 @@ export default function Home() {
       <Hero />
       <Mission />
       <Portfolio />
+      <Team />
       <Footer />
     </div>
   );
