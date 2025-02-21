@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Next.js: debug client-side",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}",
+        "sourceMapPathOverrides": {
+          "webpack://_N_E/*": "${webRoot}/*"
+        }
+      },
+      {
+        "name": "Next.js: debug server-side",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}",
+        "runtimeExecutable": "pnpm",
+        "runtimeArgs": ["dev"],
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        },
+        "console": "integratedTerminal",
+        "skipFiles": ["<node_internals>/**"],
+        "outFiles": ["${workspaceFolder}/.next/server/**/*.js"]
+      },
+      {
+        "name": "Next.js: debug full stack",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}",
+        "runtimeExecutable": "pnpm",
+        "runtimeArgs": ["dev"],
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        },
+        "serverReadyAction": {
+          "pattern": "- Local:.+(https?://.+)",
+          "uriFormat": "%s",
+          "action": "debugWithChrome"
+        },
+        "console": "integratedTerminal",
+        "skipFiles": ["<node_internals>/**"],
+        "outFiles": ["${workspaceFolder}/.next/server/**/*.js"]
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Debug (Client + Server)",
+        "configurations": ["Next.js: debug client-side", "Next.js: debug server-side"]
+      }
+    ]
+  }

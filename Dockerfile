@@ -31,8 +31,10 @@ ENV NODE_ENV=production
 
 ARG RESEND_API_KEY
 ARG CONTACT_EMAIL
+ARG PAYLOAD_SECRET
 ENV RESEND_API_KEY=$RESEND_API_KEY
 ENV CONTACT_EMAIL=$CONTACT_EMAIL
+ENV PAYLOAD_SECRET=$PAYLOAD_SECRET
 
 # Build the application
 RUN pnpm build
@@ -47,8 +49,10 @@ ENV PORT=3000
 
 ARG RESEND_API_KEY
 ARG CONTACT_EMAIL
+ARG PAYLOAD_SECRET
 ENV RESEND_API_KEY=$RESEND_API_KEY
 ENV CONTACT_EMAIL=$CONTACT_EMAIL
+ENV PAYLOAD_SECRET=$PAYLOAD_SECRET
 
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
@@ -58,7 +62,7 @@ RUN adduser --system --uid 1001 nextjs
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Copy standalone build
+# Copy necessary files
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
@@ -69,5 +73,5 @@ USER nextjs
 # Expose port
 EXPOSE 3000
 
-# Start the application
+# Start the application using the standalone server
 CMD ["node", "server.js"]

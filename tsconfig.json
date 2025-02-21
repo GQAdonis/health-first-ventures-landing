@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2020",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "outDir": "dist",
+    "rootDir": ".",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,6 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "forceConsistentCasingInFileNames": false,
     "plugins": [
       {
         "name": "next"
@@ -24,7 +27,7 @@
     ],
     "paths": {
       "@/*": [
-        "./app/*"
+        "./*"
       ],
       "@/components/*": [
         "./app/components/*"
@@ -43,6 +46,9 @@
       ],
       "@/hooks/*": [
         "./app/hooks/*"
+      ],
+      "@/payload-config": [
+        "./payload.config.ts"
       ]
     }
   },
@@ -54,5 +60,10 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "swc": true,
+    "esm": true
+  }
 }

@@ -1,9 +1,36 @@
+import { withPayload } from '@payloadcms/next/withPayload'
+
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  swcMinify: true,
   output: 'standalone',
   transpilePackages: ['framer-motion'],
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        dns: false,
+        net: false,
+        tls: false,
+        assert: false,
+        'worker_threads': false,
+        readline: false,
+        module: false,
+        os: false,
+        path: false,
+      };
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'node:fs': false,
+        'node:assert': false,
+        'node:module': false,
+        'node:os': false,
+        'node:path': false,
+      };
+    }
+    return config;
+  },
   images: {
     remotePatterns: [
       {
@@ -53,4 +80,4 @@ const config = {
   },
 };
 
-export default config;
+export default withPayload(config);
